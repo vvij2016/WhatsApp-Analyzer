@@ -24,3 +24,6 @@ pip-delete-this-directory.txt
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Data Science Model
+model
