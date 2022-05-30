@@ -10,6 +10,7 @@ Description included inside
 - Top Domains
 - Top 20 words
 - Top 20 emojis
+- Heatmap of chats by dayofweek and hour
 - Word Cloud
 
 Also included functionality in Jupyter Notebook:
