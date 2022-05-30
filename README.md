@@ -6,6 +6,7 @@ Description included inside
 
 #### Visualization in Notebook
 
+- Chat timeline
 - Top 20 most active members
 - Top Domains
 - Top 20 words
