@@ -1,0 +1,6 @@
+attached
+photo
+jpg
+mp4
+video
+gif

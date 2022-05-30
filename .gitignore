@@ -12,3 +12,15 @@ ipython_config.py
 
 # VSCODE
 .vscode
+
+#MAC
+.DS_Store
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
