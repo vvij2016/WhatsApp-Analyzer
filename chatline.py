@@ -13,6 +13,7 @@ class Chatline:
         self.line = line
         self.line_type = None # Chat/Event/Attachment
         self.timestamp = None
+        self.weekday = None
         self.sender = None
         self.body = ""
         self.is_startingline = False
@@ -105,6 +106,15 @@ class Chatline:
         domain = domain.split("/")
         return domain[0]
 
+    def deEmojify(self,text):
+        regrex_pattern = re.compile(pattern="["
+                                            u"\U0001F600-\U0001F64F"  # emoticons
+                                            u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                                            u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                                            u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                                            "]+", flags=re.UNICODE)
+        return regrex_pattern.sub(r'', text)
+
     def get_words(self, string=""):
         #remove non alpha content
         regex = re.sub(r"[^a-z\s]+", "", string.lower())
@@ -163,6 +173,7 @@ class Chatline:
             # Set timestamp
             if dt:
                 self.timestamp = dt
+                self.weekday = dt.weekday()
 
             # Body of the chat separated from timestamp
             body = starting_line.group(18)
@@ -178,11 +189,13 @@ class Chatline:
                 # Set current line sender, timestamp same to previous line
                 self.sender = self.previous_line.sender
                 self.timestamp = self.previous_line.timestamp
+                self.weekday = self.previous_line.timestamp.weekday()
                 self.line_type = "Chat"
 
             body = line
             self.body = line
             self.parse_body(body, following=True)
+
 
     def parse_body(self, body="", following=False):
         # Check wether the starting line is a chat or an event
